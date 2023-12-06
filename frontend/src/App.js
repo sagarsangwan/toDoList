@@ -9,11 +9,12 @@ function App() {
 
   const [todos, setTodos] = useState([]);
   useEffect(() => {
-    axios.get("/todos/")
+    axios.get("http://127.0.0.1:8000/todos/")
       .then((res) => {
         setTodos(res.data)
+        console.log(res)
       }).catch(() => {
-        alert("something went")
+        alert("something went wrong")
       })
   }, [])
   return (
@@ -29,7 +30,7 @@ function App() {
       </Navbar>
       <Container>
         <ToDoForm></ToDoForm>
-        <ToDoList></ToDoList>
+        <ToDoList todos={todos}></ToDoList>
       </Container>
     </div>
   );

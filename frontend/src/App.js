@@ -17,11 +17,16 @@ function App() {
         alert("something went wrong")
       })
   }, [])
+  const fetctData = () => {
+    axios.get("/todos/")
+      .then((res) => {
+        setTodos(res.data)
+        console.log(res)
+      }).catch(() => {
+        alert("something went wrong")
+      })
+  }
   return (
-
-
-
-
     <div >
       <Navbar bg="light" style={{ marginBottom: "20px" }}>
         <Container>
@@ -29,7 +34,7 @@ function App() {
         </Container>
       </Navbar>
       <Container>
-        <ToDoForm todos={todos} setTodos={setTodos}></ToDoForm>
+        <ToDoForm todos={todos} setTodos={setTodos} fetctData={fetctData}></ToDoForm>
         <ToDoList todos={todos} setTodos={setTodos}></ToDoList>
       </Container>
     </div>

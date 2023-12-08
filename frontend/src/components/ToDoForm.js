@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 
-function ToDoForm({ todos = [], setToDos }) {
+function ToDoForm({ fetctData, setTodos, todos }) {
     const [name, setName] = useState("");
     const handelchange = e => {
         setName(e.target.value);
@@ -21,6 +21,9 @@ function ToDoForm({ todos = [], setToDos }) {
         axios.post("http://127.0.0.1:8000/todos/", newToDo)
             .then((response) => {
                 console.log(response);
+                console.log(response.data)
+                setTodos(todos => [...todos, response.data])
+                // fetctData()
 
             })
             .catch((error) => {

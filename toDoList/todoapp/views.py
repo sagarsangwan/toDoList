@@ -17,6 +17,7 @@ def todo_list(request):
         serializer = Todoserializer(todos, many=True)
         return Response(serializer.data)
     elif request.method == "POST":
+        print(request.data)
         serializer = Todoserializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

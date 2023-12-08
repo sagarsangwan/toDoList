@@ -9,7 +9,7 @@ function App() {
 
   const [todos, setTodos] = useState([]);
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/todos/")
+    axios.get("/todos/")
       .then((res) => {
         setTodos(res.data)
         console.log(res)
@@ -29,8 +29,8 @@ function App() {
         </Container>
       </Navbar>
       <Container>
-        <ToDoForm></ToDoForm>
-        <ToDoList todos={todos}></ToDoList>
+        <ToDoForm todos={todos} setTodos={setTodos}></ToDoForm>
+        <ToDoList todos={todos} setTodos={setTodos}></ToDoList>
       </Container>
     </div>
   );

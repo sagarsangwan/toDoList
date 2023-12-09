@@ -23,7 +23,7 @@ function ToDoForm({ fetctData, setTodos, todos }) {
                 console.log(response);
                 console.log(response.data)
                 setTodos(todos => [...todos, response.data])
-                // fetctData()
+                fetctData()
 
             })
             .catch((error) => {

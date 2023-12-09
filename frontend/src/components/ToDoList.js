@@ -5,7 +5,7 @@ import { MdCheckBox, MdCheckBoxOutlineBlank, MdEdit, MdDelete } from "react-icon
 
 
 
-export default function ToDoList({ todos, setTodos }) {
+export default function ToDoList({ todos, setTodos, filterToDo }) {
     const [todo, setToDo] = useState({})
 
     const handleDelete = (id) => {
@@ -40,6 +40,8 @@ export default function ToDoList({ todos, setTodos }) {
         }
 
     }
+    const completedToDos = todos.filter(todo => todo.completed);
+    const unCompletedToDo = todos.filter(todo => todo.completed == false);
     const renderListGroupItem = (todo) => {
         return <ListGroup.Item key={todo.id} className="d-flex justify-content-center align-items-center">
             <div className="d-flex justify-content-center" >
@@ -56,11 +58,46 @@ export default function ToDoList({ todos, setTodos }) {
         </ListGroup.Item>
     }
 
-    return (<ListGroup>
-        {todos.map(
-            renderListGroupItem
-        )}
+    return (
+        <div>
+            {
+                filterToDo === "all" && (
+                    <div>
+                        <ListGroup>
+                            {unCompletedToDo.map(
+                                renderListGroupItem
+                            )}
 
 
-    </ListGroup>)
+                        </ListGroup>
+                        <ListGroup>
+                            {completedToDos.map(
+                                renderListGroupItem
+                            )}
+
+
+                        </ListGroup>
+                    </div>
+                )}{
+
+                filterToDo === "notCompleted" && (
+                    <ListGroup>
+                        {unCompletedToDo.map(
+                            renderListGroupItem
+                        )}
+
+
+                    </ListGroup>
+                )}
+            {filterToDo === "completed" && (
+                <ListGroup>
+                    {completedToDos.map(
+                        renderListGroupItem
+                    )}
+
+
+                </ListGroup>
+            )
+            }
+        </div>)
 }

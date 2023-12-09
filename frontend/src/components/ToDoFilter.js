@@ -19,13 +19,14 @@ function ToDoFilter({ filterToDo, setFilterToDo }) {
 
     }
     return (
-        <div>
-            <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={optionHandler}>
+        <div className='align-items-end justify-content-end d-flex'>
+            <select className="form-select  mb-3 mx_w_130 fts-12" onChange={optionHandler}>
                 <option value="all" >All todos</option>
                 <option value="completed">Completed</option>
                 <option value="notCompleted">Not completed</option>
 
             </select>
+
         </div>
     )
 }

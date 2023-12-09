@@ -33,9 +33,13 @@ function ToDoForm({ fetctData, setTodos, todos }) {
     return (
         <Form onSubmit={handleSubmit}>
             <InputGroup className='mb-4'>
-                <FormControl placeholder='New Todo' onChange={handelchange} value={name}
-                />
-                <Button type='submit'>Add</Button>
+                <div class="form__group field">
+                    <input type="input" class="form__field" placeholder="New ToDO" id='inputNewToDO' name="New ToDO" onChange={handelchange} value={name} />
+                    <label for="inputNewToDO" class="form__label">New Todo</label>
+                </div>
+                {/* <FormControl placeholder='New Todo' onChange={handelchange} value={name}
+                /> */}
+                <Button className='btn btn-success ms-1' type='submit'>Add</Button>
             </InputGroup>
         </Form>
     )

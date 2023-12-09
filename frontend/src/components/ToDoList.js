@@ -4,11 +4,12 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { MdEdit, MdDelete } from "react-icons/md"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { FaCheck } from "react-icons/fa";
 
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl"
-
+// import './checkbox.css'
 
 export default function ToDoList({ todos, setTodos, filterToDo }) {
     const [todo, setToDo] = useState({})
@@ -38,6 +39,8 @@ export default function ToDoList({ todos, setTodos, filterToDo }) {
             .then((res) => {
                 console.log(res)
                 handleClose()
+                console.log(updateToDO)
+                setTodos(todos.map(todo => todo.id === updateToDO.id ? { ...todo, task: "updateToDO" } : todo))
             }, [])
 
     }
@@ -80,11 +83,20 @@ export default function ToDoList({ todos, setTodos, filterToDo }) {
 
     // listgrop body
     const renderListGroupItem = (todo) => {
-        return <ListGroup.Item key={todo.id} className="d-flex justify-content-center align-items-center">
+        return <ListGroup.Item key={todo.id} className="d-flex justify-content-between align-items-center mb-3 box_shadow_todo rcorners">
             <div className="d-flex justify-content-center" >
-                <input type="checkbox" checked={todo.completed ? 'checked' : ""} onChange={(e) => handleCompletedOrNot(e, todo.id, todo)} style={{ marginRight: "12px" }} >
-                    {/* {todo.completed === true ? <MdCheckBox onClick={() => handleCompletedOrNot(todo.id)} /> : <MdCheckBoxOutlineBlank onClick={() => handleCompletedOrNot(todo.id)} />} */}
-                </input>
+                <label className="label">
+                    <input type="checkbox" className="label__checkbox" id={todo.id} checked={todo.completed ? 'checked' : ""} onChange={(e) => handleCompletedOrNot(e, todo.id, todo)} style={{ marginRight: "12px" }} >
+                        {/* {todo.completed === true ? <MdCheckBox onClick={() => handleCompletedOrNot(todo.id)} /> : <MdCheckBoxOutlineBlank onClick={() => handleCompletedOrNot(todo.id)} />} */}
+                    </input>
+                    <span className="label__text">
+                        <span className="label__check">
+                            <FaCheck style={{ color: "white" }} />
+
+                        </span>
+                    </span>
+                </label>
+                {/* <label className="btn btn-outline-primary" for={todo.id}>Single toggle</label><br></br> */}
                 <span style={todo.completed ? { textDecoration: 'line-through', } : {}}>{todo.task} {todo.id}</span>
             </div>
             <div >
@@ -96,7 +108,7 @@ export default function ToDoList({ todos, setTodos, filterToDo }) {
     }
 
     return (
-        <div>
+        <div className="">
             {
                 filterToDo === "all" && (
                     <div>

@@ -5,6 +5,7 @@ import ToDoList from "./components/ToDoList";
 import ToDoForm from "./components/ToDoForm";
 import axios from "axios";
 import ToDoFilter from "./components/ToDoFilter";
+import "./css/main.css"
 
 function App() {
 
@@ -28,8 +29,8 @@ function App() {
       })
   }
   return (
-    <div >
-      <Navbar bg="light" style={{ marginBottom: "20px" }}>
+    <div className="container">
+      <Navbar style={{ marginBottom: "20px" }}>
         <Container>
           <Navbar.Brand href="#">ToDo App</Navbar.Brand>
         </Container>

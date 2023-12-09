@@ -12,7 +12,6 @@ function App() {
     axios.get("/todos/")
       .then((res) => {
         setTodos(res.data)
-        console.log(res)
       }).catch(() => {
         alert("something went wrong")
       })
@@ -21,7 +20,6 @@ function App() {
     axios.get("/todos/")
       .then((res) => {
         setTodos(res.data)
-        console.log(res)
       }).catch(() => {
         alert("something went wrong")
       })
